@@ -808,4 +808,21 @@ your data.
 
 ---
 
-*Documentation written for the `Products` GraphQL operation. Last verified: 30 Sep 2026 against Magento 2.4.6-p3.*
+## 👨‍💻 Author
+
+<p align="center">
+  <img src="https://github.com/inadeemkhan.png" alt="Nadeem Khan" width="100" style="border-radius: 50%;"/>
+  <br>
+  <b>Nadeem Khan</b><br>
+  🌐 <a href="https://inadeemkhan.github.io">Portfolio</a> | 📧 <a href="mailto:khannadeem243@gmail.com">khannadeem243@gmail.com</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/inadeemkhan">
+    <img src="https://img.shields.io/github/followers/inadeemkhan?style=social" alt="GitHub Follow"/>
+  </a>
+  <a href="https://inadeemkhan.github.io">
+    <img src="https://img.shields.io/badge/Portfolio-Visit-blue" alt="Portfolio"/>
+  </a>
+</p>
+
