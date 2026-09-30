@@ -29,6 +29,10 @@ with Venia sample data. Every request/response pair shown below is real output, 
   - [3.4 Nested product fields under `categories`](#34-nested-product-fields-under-categories)
 - [4. Example response](#4-example-response)
 - [5. How to run it](#5-how-to-run-it)
+  - [5.1 cURL](#51-curl)
+  - [5.2 Magento admin / GraphiQL](#52-magento-admin--graphiql)
+  - [5.3 Response envelope](#53-response-envelope)
+  - [5.4 Postman](#54-postman)
 - [6. Behaviour, edge cases & caveats](#6-behaviour-edge-cases--caveats)
 - [7. Troubleshooting](#7-troubleshooting)
 - [8. Custom method — fetching products via GraphQL (`DevScripts_GraphQL`)](#8-custom-method--fetching-products-via-graphql-devscripts_graphql)
@@ -350,6 +354,30 @@ against `/graphql`.
 | Validation error (unknown field/argument) | `{ "errors": [ { "message": "Cannot query field \"x\" on type \"Products\"." } ] }` |
 
 The HTTP status is `200` in all of the above cases — always inspect the `errors` key.
+
+### 5.4 Postman
+
+The same request can be replayed in Postman — no GraphQL-specific setup is required, just a plain
+`POST` with a raw JSON body.
+
+| Setting | Value |
+| --- | --- |
+| Method | `POST` |
+| URL | `https://magento2.4.6-p3.test/graphql` |
+| Header | `Content-Type: application/json` |
+| Body | `raw` → `JSON` |
+| Body content | `{ "query": "<the query from §1>" }` |
+
+![GraphQL query executed in Postman](https://raw.githubusercontent.com/inadeemkhan/GraphQl-learning/master/postman-image.png)
+
+*The `products`, `cmsPage` and `categories` root fields resolved in a single Postman request (screenshot
+from the [GraphQl-learning](https://github.com/inadeemkhan/GraphQl-learning) repository).*
+
+Ready-to-paste raw body (the compact, single-line form of the query from §1):
+
+```json
+{ "query": "query Products { products(filter: { sku: { eq: \"VVP01\" } }, pageSize: 10) { id sku name qty status stock_status } cmsPage(id: 6) { content_heading identifier title url_key } categories(filters: { ids: { eq: \"13\" } }) { items { created_at is_anchor name path include_in_menu products { items { name price { regularPrice { amount { currency value } } } sku updated_at url_key } total_count } } } }" }
+```
 
 ## 6. Behaviour, edge cases & caveats
 
@@ -808,6 +836,10 @@ your data.
 
 ---
 
+*Documentation written for the `Products` GraphQL operation. Last verified: 30 Sep 2026 against Magento 2.4.6-p3.*
+
+---
+
 ## 👨‍💻 Author
 
 <p align="center">
@@ -825,4 +857,3 @@ your data.
     <img src="https://img.shields.io/badge/Portfolio-Visit-blue" alt="Portfolio"/>
   </a>
 </p>
-
