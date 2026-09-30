@@ -1,0 +1,18 @@
+
+type Query {
+    products (
+        sku: String @doc(description: "Query by sku."),
+        id: String @doc(description: "Query by id."),
+        pageSize: Int = 20 @doc(description: "The maximum number of results to return at once. The default value is 20.")
+    ) : Products @resolver( class: "DevScripts\\GraphQL\\Model\\Resolver\\Products")  @cache( cacheIdentity: "DevScripts\\GraphQL\\Model\\Resolver\\Products\\Identity")
+}
+
+type Products {
+    id  : String  @doc(description: "Query by id.") 
+    name  : String  @doc(description: "Query by  name.") 
+    sku  : String  @doc(description: "Query by  sku.") 
+    qty : Float  @doc(description: "The quantity available for the product.")
+    status : ProductStatus @doc(description: "The product status.")
+    stock_status : ProductStockStatus @doc(description: "The stock status of the product.")
+}
+enum ProductStatus { ENABLED DISABLED }
